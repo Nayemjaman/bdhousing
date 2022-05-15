@@ -11,13 +11,6 @@ import logging
 
 class BdhousingScraperPipeline(object):
     collection_name = 'info'
-    # def __init__(self):
-    #     self.conn = pymongo.MongoClient(
-    #         'loaclhost',
-    #         27017
-    #     )
-    #     db = self.conn['bdhousing']
-    #     self.collection = db['bdhousing']
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
         self.mongo_db = mongo_db
@@ -39,7 +32,13 @@ class BdhousingScraperPipeline(object):
         self.client.close()
         
     def process_item(self, item, spider):
-        # self.collection.insert_many(dict(item))
         self.db[self.collection_name].insert_one(dict(item))
         logging.debug("Post added to MongoDB")
         return item
+
+
+"""  
+@@@@@  "Reference"
+https://alysivji.github.io/mongodb-pipelines-in-scrapy.html
+
+"""
