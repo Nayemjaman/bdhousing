@@ -66,7 +66,8 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
    'bdhousing_scraper.pipelines.BdhousingScraperPipeline': 300,
 }
-
+MONGO_URI = 'mongodb://localhost:27017'
+MONGO_DATABASE = 'bdhousing'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
