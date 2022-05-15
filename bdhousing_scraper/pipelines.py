@@ -6,8 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+import pymongo
+import logging
 
 
-class BdhousingScraperPipeline:
-    def process_item(self, item, spider):
-        return item

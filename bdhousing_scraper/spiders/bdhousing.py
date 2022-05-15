@@ -19,26 +19,25 @@ class BdhousingSpider(scrapy.Spider):
         item = BdhousingScraperItem()
 
         title = (unicodedata.normalize("NFKD", response.css(
-            'h1 ::text').extract_first())).strip()
+            'h1 ::text').get())).strip()
         location = (unicodedata.normalize("NFKD", response.css(
-            'h1 +p ::text').extract_first())).strip()
+            'h1 +p ::text').get())).strip()
         price = (unicodedata.normalize("NFKD", response.css(
-            '.ct-productID ::text').extract_first())).strip()
+            '.ct-productID ::text').get())).strip()
 
         # Property summary
         heading = response.css('.detail-list label ::text').getall()
+        heading = [unicodedata.normalize("NFKD", i) for i in heading]
         heading = [i.strip() for i in heading]
         summary = response.css('.detail-list span ::text').getall()
         summary = [i.strip() for i in summary]
         property_summary = dict(zip(heading, summary))
 
-
-
         # Property details
         features = response.css('.col-xs-6 label ::text').getall()
         features = [i.strip() for i in features]
-
-
+        features = [i for i in features if len(i) > 0]
+        features = ",".join(features)
 
         # Property Owner Details
         companey_name = response.css('h5 a ::text').get()
@@ -50,7 +49,7 @@ class BdhousingSpider(scrapy.Spider):
         item['price'] = price
 
         item['property_summary'] = property_summary
-        
+
         item['features'] = features
         item['companey_name'] = companey_name
         item['property_id'] = property_id
