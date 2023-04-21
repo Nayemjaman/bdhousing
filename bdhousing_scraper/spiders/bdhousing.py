@@ -18,6 +18,7 @@ class BdhousingSpider(scrapy.Spider):
     def parse_details(self, response):
         item = BdhousingScraperItem()
 
+        
         title = (unicodedata.normalize("NFKD", response.css(
             'h1 ::text').get())).strip()
         location = (unicodedata.normalize("NFKD", response.css(
