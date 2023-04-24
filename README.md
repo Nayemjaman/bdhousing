@@ -12,7 +12,7 @@ Welcome to the bdhousing repository!
 In this project, I scraped estate marketplace data (from [bdhousing.com](https://www.bdhousing.com/)) using Scrapy.
 
 
-## ABOUT BDHOUSING
+**ABOUT BDHOUSING**
 
 bdHousing has been the dominant frontier of online real estate marketplace
 for the last 17 years. Being the largest real estate portal in Bangladesh
